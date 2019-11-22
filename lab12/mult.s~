@@ -1,0 +1,20 @@
+	.global _Z4multii
+_Z4multi:
+	mov 	R2,#2
+	mov	R3,R0
+loop:
+	sub	R1,R2 // 7-2 = 5   5-4 = 1	
+	lsl	R2,#1 // 2*2 = 4   4*2 = 8
+	lsl	R3,#1 //8*2 = 16   16*2 = 32
+	cmp	R1, #1 //5 vs 1    1 vs 1
+	bgt	loop
+	b	addloop
+addloop:
+	add	R3,R0
+	subs	R1,#1
+	bne	addloop
+	b	out
+out:
+	mov	R0,R3
+	bx	lr
+	
